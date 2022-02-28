@@ -17,7 +17,7 @@ from .serializers import (
 )
 from .filters import PostFilter
 from .pagination import PostsPagination
-from .mixins import CreateListMixins, DestroyCreateMixin
+from .mixins import CreateListMixins, DestroyCreateMixins
 
 
 class UserViewSet(CreateListMixins):
@@ -71,7 +71,7 @@ class PostViewSet(CreateListMixins):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class FollowViewSet(DestroyCreateMixin):
+class FollowViewSet(DestroyCreateMixins):
     queryset = Follow.objects.all()
     serializer_class = FollowSerializer
     permission_classes = (IsAuthenticated,)

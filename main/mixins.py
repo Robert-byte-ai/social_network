@@ -7,7 +7,7 @@ class CreateListMixins(mixins.CreateModelMixin,
     pass
 
 
-class DestroyCreateMixin(mixins.DestroyModelMixin,
-                         mixins.CreateModelMixin,
-                         viewsets.GenericViewSet):
+class DestroyCreateMixins(mixins.DestroyModelMixin,
+                          mixins.CreateModelMixin,
+                          viewsets.GenericViewSet):
     pass
