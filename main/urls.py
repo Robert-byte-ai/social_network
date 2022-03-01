@@ -9,7 +9,7 @@ router_1 = DefaultRouter()
 router_1.register(
     r'user',
     UserViewSet,
-    basename='create'
+    basename='user'
 )
 router_1.register(
     'posts',

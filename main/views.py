@@ -28,7 +28,10 @@ class UserViewSet(CreateListMixins):
 
     def get_queryset(self):
         queryset = User.objects.all()
-        if 'posts_count' in self.request.query_params.get('ordering'):
+        if (
+                (ordering := self.request.query_params.get('ordering'))
+                and 'posts_count' in ordering
+        ):
             queryset = queryset.annotate(posts_count=Count('posts'))
         return queryset
 
