@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
@@ -48,6 +49,7 @@ class PostViewSet(CreateListMixins):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+    @swagger_auto_schema(method='post', request_body=ReadSerializer)
     @action(methods=['POST'], detail=True)
     def read(self, request, pk):
         data = {'user': request.user.id, 'post': pk}
@@ -63,6 +65,7 @@ class PostViewSet(CreateListMixins):
             )
         return Response(serializer.errors)
 
+    @swagger_auto_schema(method='delete')
     @read.mapping.delete
     def delete_read(self, request, pk):
         read = get_object_or_404(
